@@ -1,6 +1,7 @@
 #include "DxLib.h"
 
 #include "game.h"
+#include "SceneMain.h"
 
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -23,14 +24,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	// ダブルバッファモード
 	SetDrawScreen(DX_SCREEN_BACK);
 
-
+		SceneMain scenemain;
 	while (ProcessMessage() == 0)
 	{
 		LONGLONG time = GetNowHiPerformanceCount();
 
 		// 画面のクリア
 		ClearDrawScreen();
-
+		scenemain.draw();
+		
 		// 裏画面を表画面を入れ替える
 		ScreenFlip();
 

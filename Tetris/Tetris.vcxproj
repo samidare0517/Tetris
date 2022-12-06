@@ -151,10 +151,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SceneMain.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="Vec2.h" />
   </ItemGroup>
