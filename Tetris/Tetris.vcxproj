@@ -151,11 +151,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Mino.cpp" />
+    <ClCompile Include="Pad.cpp" />
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Vec2.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Mino.h" />
+    <ClInclude Include="Pad.h" />
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="Vec2.h" />

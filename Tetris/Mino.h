@@ -1,11 +1,10 @@
 #pragma once
-
-
-class SceneMain
+#include "Vec2.h"
+class Mino
 {
 public:
-	SceneMain();
-	virtual ~SceneMain();
+	Mino();
+	virtual ~Mino();
 
 	virtual void init();
 	virtual void update();
@@ -13,6 +12,11 @@ public:
 
 
 private:
+	// •\Ž¦ˆÊ’u
+	Vec2 m_pos;
+
+	// ˆÚ“®
+	Vec2 m_vec;
 
 };
 

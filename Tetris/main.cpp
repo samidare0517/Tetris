@@ -23,14 +23,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 	// ダブルバッファモード
 	SetDrawScreen(DX_SCREEN_BACK);
-
-		SceneMain scenemain;
+	SceneMain scenemain;
+	scenemain.init();
 	while (ProcessMessage() == 0)
 	{
 		LONGLONG time = GetNowHiPerformanceCount();
 
 		// 画面のクリア
 		ClearDrawScreen();
+
+		scenemain.update();
 		scenemain.draw();
 		
 		// 裏画面を表画面を入れ替える
@@ -45,7 +47,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		}
 	}
-
+//	scenemain.end();
 
 	DxLib_End();				// ＤＸライブラリ使用の終了処理
 
