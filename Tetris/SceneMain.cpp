@@ -26,6 +26,7 @@ void SceneMain::init()
 
 void SceneMain::update()
 {
+	Pad::update();
 	mino.update();
 }
 

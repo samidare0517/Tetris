@@ -27,17 +27,23 @@ void Mino::init()
 	m_vec.y = 0.0f;
 }
 
+// ミノ移動処理
 void Mino::update()
 {
-	// 移動処理
+	fallframe++;
+
+	// フレーム計算
+	if (fallframe >= 60)
+	{
+		fallframe = 0;
+		m_pos.y  += 20;		// 1フレームで20ずつ下げる
+	
+	}
 
 	// パッド(もしくはキーボード)からの入力を取得する
 	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-
-	// ミノのパッド移動処理
-
 	
-
+	// ミノのパッド移動処理
 	if (padState & PAD_INPUT_DOWN)
 	{
 		m_pos.y += +20;
@@ -51,23 +57,23 @@ void Mino::update()
 		m_pos.x += +20;
 	}
 
-	// ミノが外に出そうになったら画面内に戻す
-	/*if (m_pos.x < 0)
+	// ミノが外に出ないようにする
+	if (m_pos.x < 20)
 	{
-		m_pos.x = 0;
+		m_pos.x = 20;
 	}
-	if (m_pos.x > Game::kScreenWindth - 20)
+	if (m_pos.x > Game::kScreenWindth - 40)
 	{
-		m_pos.x = Game::kScreenWindth - 20;
+		m_pos.x = Game::kScreenWindth - 40;
 	}
-	if (m_pos.y < 0)
+	if (m_pos.y < 20)
 	{
-		m_pos.y = 0;
+		m_pos.y = 20;
 	}
-	if (m_pos.y > Game::kScreenHeight - 20)
+	if (m_pos.y > Game::kScreenHeight - 40)
 	{
-		m_pos.y = Game::kScreenHeight - 20;
-	}*/
+		m_pos.y = Game::kScreenHeight - 40;
+	}
 
 }
 

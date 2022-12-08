@@ -1,5 +1,6 @@
 #pragma once
 #include "Vec2.h"
+#include "Pad.h"
 class Mino
 {
 public:
@@ -17,6 +18,8 @@ private:
 
 	// ˆÚ“®
 	Vec2 m_vec;
+
+	int fallframe = 0;
 
 };
 
