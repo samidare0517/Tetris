@@ -3,6 +3,10 @@
 #include "game.h"
 #include "SceneMain.h"
 
+
+
+
+
 // プログラムは WinMain から始まります
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -31,7 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 		// 画面のクリア
 		ClearDrawScreen();
-
+	
 		scenemain.update();
 		scenemain.draw();
 		

@@ -21,7 +21,7 @@ Mino::~Mino()
 void Mino::init()
 {
 	// 初期位置
-	m_pos.x = 20.0f;
+	m_pos.x = 120.0f;
 	m_pos.y = 20.0f;
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
@@ -32,6 +32,8 @@ void Mino::update()
 {
 	fallframe++;
 
+
+
 	// フレーム計算
 	if (fallframe >= 60)
 	{
@@ -40,19 +42,16 @@ void Mino::update()
 	
 	}
 
-	// パッド(もしくはキーボード)からの入力を取得する
-	int padState = GetJoypadInputState(DX_INPUT_KEY_PAD1);
-	
 	// ミノのパッド移動処理
-	if (padState & PAD_INPUT_DOWN)
+	if (Pad::isPress( PAD_INPUT_DOWN))		// 下方向
 	{
 		m_pos.y += +20;
 	}
-	if (padState & PAD_INPUT_LEFT)
+	if (Pad::isTrigger(PAD_INPUT_LEFT))		// 左方向
 	{
 		m_pos.x += -20;
 	}
-	if (padState & PAD_INPUT_RIGHT)
+	if (Pad::isTrigger(PAD_INPUT_RIGHT))	// 右方向
 	{
 		m_pos.x += +20;
 	}
@@ -75,11 +74,21 @@ void Mino::update()
 		m_pos.y = Game::kScreenHeight - 40;
 	}
 
+
+}
+
+// ミノの固定
+void Mino::FixedUpdate()
+{
+	// 一番下の座標まで行ったらその場所に固定する
+
+
+
 }
 
 void Mino::draw()
 {
 	// ミノ(一個のみ仮)
-	DrawBox(m_pos.x, m_pos.y, m_pos.x+20, m_pos.y + 20,GetColor(225, 0, 225), true);
-
+	DrawBox(m_pos.x, m_pos.y, m_pos.x + 20, m_pos.y + 20, GetColor(225, 0, 225), true);
+	
 }

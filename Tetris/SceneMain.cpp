@@ -1,11 +1,12 @@
+#include <iostream>
 #include "SceneMain.h"
 #include "Mino.h"
 #include "DxLib.h"
 
-
 namespace
 {
 	Mino mino;
+	
 }
 
 
@@ -28,19 +29,48 @@ void SceneMain::update()
 {
 	Pad::update();
 	mino.update();
+	mino.FixedUpdate();
 }
 
 void SceneMain::draw()
 {
 	mino.draw();
 
+	for (int x = 0; x < BOAD_HEIGHT; ++x)
+	{
+		Field[x][0] = 1;
+		Field[x][BOAD_WINDTH - 1] = 1;
+	}
+
+	for (int y = 0; y < BOAD_WINDTH; ++y)
+	{
+		Field[BOAD_HEIGHT - 1][y] = 1;
+	}
+
+	// フィールドの描画
+	for (int x = 0; x < BOAD_HEIGHT; x++)
+	{
+		for (int y = 0; y < BOAD_WINDTH; y++)
+		{
+			if (1 == Display[x][y])
+			{
+				std::cout << "■";
+			}
+			else
+			{
+				std::cout << "　";
+			}
+		}
+		std::cout << std::endl;
+	}
+
 	// 壁になるところ
 	// 右
-	DrawBox(0, 0, 20, 420, GetColor(225, 225, 225), true);
+//	DrawBox(0, 0, 20, 420, GetColor(225, 225, 225), true);
 	// 左
-	DrawBox(220, 0, 240, 420, GetColor(225, 225, 225), true);
+//	DrawBox(220, 0, 240, 420, GetColor(225, 225, 225), true);
 	// 下
-	DrawBox(20, 400, 240, 420, GetColor(225, 225, 225), true);
+//	DrawBox(20, 400, 240, 420, GetColor(225, 225, 225), true);
 
 
 	// 横のライン
