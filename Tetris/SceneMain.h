@@ -14,8 +14,11 @@ public:
 	virtual void draw();
 
 	int Field[BOAD_HEIGHT][BOAD_WINDTH] = { 0 };
-	int Display[BOAD_HEIGHT][BOAD_WINDTH] = { 0 };
 private:
+
+	int x;
+	int y;
+
 
 };
 
