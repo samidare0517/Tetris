@@ -1,6 +1,9 @@
 #pragma once
 #include "Vec2.h"
 #include "Pad.h"
+#include "SceneMain.h"
+#include "common.h"
+
 class Mino
 {
 public:
@@ -11,6 +14,9 @@ public:
 	virtual void update();
 	virtual void FixedUpdate();
 	virtual void draw();
+	virtual int Field(int field[BOAD_WINDTH][BOAD_HEIGHT]);
+
+	bool RockBlock = false;		// ŒÅ’è—pƒtƒ‰ƒO
 
 
 private:
@@ -21,6 +27,7 @@ private:
 	Vec2 m_vec;
 
 	int fallframe = 0;
+
 
 };
 

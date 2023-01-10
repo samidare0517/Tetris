@@ -14,7 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	ChangeWindowMode(Game::kWindowMode);
 	
 	// ウインドウ名設定
-	SetMainWindowText("ゲーム名");
+	SetMainWindowText("テトリス");
 
 	// 画面サイズの設定
 	SetGraphMode(Game::kScreenWindth, Game::kScreenHeight, Game::kColorDepth);

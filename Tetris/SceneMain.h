@@ -1,8 +1,8 @@
 #pragma once
 #include "Pad.h"
+#include "Mino.h"
+#include "common.h"
 
-#define BOAD_WINDTH 12
-#define BOAD_HEIGHT 21
 class SceneMain
 {
 public:
@@ -12,9 +12,16 @@ public:
 	virtual void init();
 	virtual void update();
 	virtual void draw();
+	
+	bool RockBlock = false;		// 固定用フラグ
 
 	int Field[BOAD_HEIGHT][BOAD_WINDTH] = { 0 };
+	int g_tetris[TETRIS_WINDTH][TETRIS_HEIGHT];        // 落下したテトリミノ(多分あとで使う??)
+
+	
+
 private:
+
 
 	int x;
 	int y;

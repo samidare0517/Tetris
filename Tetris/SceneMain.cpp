@@ -1,13 +1,13 @@
 #include "SceneMain.h"
 #include "Mino.h"
+#include "common.h"
 #include "DxLib.h"
 
 namespace
 {
 	Mino mino;
-	
+	int field[BOAD_WINDTH][BOAD_HEIGHT];
 }
-
 
 SceneMain::SceneMain()
 {
@@ -28,13 +28,15 @@ void SceneMain::update()
 {
 	Pad::update();
 	mino.update();
-	mino.FixedUpdate();
+	mino.Field(field);
 }
 
 void SceneMain::draw()
 {
+	// ミノの描画
 	mino.draw();
 
+	// フィールドの描画
 	for (int y = 0; y < BOAD_HEIGHT; y++)
 	{
 		Field[y][0] = 1;
@@ -47,37 +49,38 @@ void SceneMain::draw()
 		Field[BOAD_HEIGHT - 1][x] = 1;
 	}
 
-	// フィールドの描画
+	
 	for (int y = 0; y < BOAD_HEIGHT; y++)
 	{
 		for (int x = 0; x < BOAD_WINDTH; x++)
 		{
-			if (1 == Field[y][x])
+
+			switch (Field[y][x])
 			{
-				SetFontSize(23);                             //サイズを64に変更
-				DrawString(x+x*19-2, y+y*19-2, "■",GetColor(225, 225, 225));
-			}
-			else
-			{
-				DrawString(x+x*19-2, y+y*19-2, "  ",GetColor(225, 225, 225));
+			case 1:		// 外枠
+				SetFontSize(25);		// ■のサイズを25に調整
+				DrawString(x + x * 19 - 3, y + y * 19 - 2, "■",GetColor(225, 225, 225));
+				break;
+			
+			case 2:
+				DrawString(x + x * 19 - 1, y + y * 19 - 1, "　",GetColor(225, 225, 225));
+				break;
+
+			default:
+				break;
+
 			}
 		}
 	}
 
-	// 壁になるところ
-	// 右
-//	DrawBox(0, 0, 20, 420, GetColor(225, 225, 225), true);
-	// 左
-//	DrawBox(220, 0, 240, 420, GetColor(225, 225, 225), true);
-	// 下
-//	DrawBox(20, 400, 240, 420, GetColor(225, 225, 225), true);
+	mino.FixedUpdate();		// ミノの固定処理
 
 
 	// 横のライン
-	//DrawLine(0, 20, 240, 20, GetColor(0, 150, 150), true);
-	//DrawLine(0, 40, 240, 40, GetColor(0, 150, 150), true);
-	//DrawLine(0, 60, 240, 60, GetColor(0, 150, 150), true);
-	//DrawLine(0, 80, 240, 80, GetColor(0, 150, 150), true);
+	//DrawLine(0,  20, 240,  20, GetColor(0, 150, 150), true);
+	//DrawLine(0,  40, 240,  40, GetColor(0, 150, 150), true);
+	//DrawLine(0,  60, 240,  60, GetColor(0, 150, 150), true);
+	//DrawLine(0,  80, 240,  80, GetColor(0, 150, 150), true);
 	//DrawLine(0, 100, 240, 100, GetColor(0, 150, 150), true);
 	//DrawLine(0, 120, 240, 120, GetColor(0, 150, 150), true);
 	//DrawLine(0, 140, 240, 140, GetColor(0, 150, 150), true);
@@ -98,10 +101,10 @@ void SceneMain::draw()
 
 
 	//// 縦のライン
-	//DrawLine(20, 0, 20, 420, GetColor(0, 150, 150), true);
-	//DrawLine(40, 0, 40, 420, GetColor(0, 150, 150), true);
-	//DrawLine(60, 0, 60, 420, GetColor(0, 150, 150), true);
-	//DrawLine(80, 0, 80, 420, GetColor(0, 150, 150), true);
+	//DrawLine( 20, 0,  20, 420, GetColor(0, 150, 150), true);
+	//DrawLine( 40, 0,  40, 420, GetColor(0, 150, 150), true);
+	//DrawLine( 60, 0,  60, 420, GetColor(0, 150, 150), true);
+	//DrawLine( 80, 0,  80, 420, GetColor(0, 150, 150), true);
 	//DrawLine(100, 0, 100, 420, GetColor(0, 150, 150), true);
 	//DrawLine(120, 0, 120, 420, GetColor(0, 150, 150), true);
 	//DrawLine(140, 0, 140, 420, GetColor(0, 150, 150), true);
