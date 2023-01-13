@@ -13,19 +13,17 @@ public:
 	virtual void update();
 	virtual void draw();
 	
-	bool RockBlock = false;		// 固定用フラグ
+	bool RockBlock = true;		// 固定用フラグ
 
 	int Field[BOAD_HEIGHT][BOAD_WINDTH] = { 0 };
-	int g_tetris[TETRIS_WINDTH][TETRIS_HEIGHT];        // 落下したテトリミノ(多分あとで使う??)
+
 
 	
 
 private:
 
-
 	int x;
 	int y;
-
-
+	
 };
 

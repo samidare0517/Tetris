@@ -32,17 +32,9 @@ void Mino::init()
 // ミノ移動処理
 void Mino::update()
 {
-	// ボードの一番下までミノが来たらfalseを返す
-	if (m_pos.y < 380)
-	{
-		RockBlock = true;
-	}
-	else
-	{
-		RockBlock = false;
-	}
+	
 	fallframe++;
-
+	
 	// フレーム計算
 	if (fallframe >= 60)
 	{
@@ -50,7 +42,7 @@ void Mino::update()
 		m_pos.y  += 20;		// 1フレームで20ずつ下げる
 	}
 
-
+	
 	// ミノのパッド移動処理
 
 	if (Pad::isPress(PAD_INPUT_UP))		// 上方向(デバック用)
@@ -87,9 +79,18 @@ void Mino::update()
 	if (m_pos.y > Game::kScreenHeight - 40)
 	{
 		m_pos.y = Game::kScreenHeight - 40;
-		m_pos.y = 20;
+		RockBlock = false;
 	}
-	
+
+	// 380の位置まではtrueを返す(実験中のため数字直記入)
+	if (m_pos.y < 380)
+	{
+		RockBlock = true;	// 未固定
+	}
+	else if(RockBlock = false)
+	{	
+		m_pos.y = 20; 
+	}
 }
 
 int Mino::Field(int field[BOAD_WINDTH][BOAD_HEIGHT])
@@ -135,22 +136,87 @@ void Mino::FixedUpdate()
 
 		main.Field[y][x] = 0;		// それ以外は何もしない
 	}
+	
 }
 
 void Mino::draw()
 {	
 	// ミノ(一個のみ仮)
 	SetFontSize(25);		// ■のサイズを25に調整
-	DrawString(m_pos.x -3 , m_pos.y -2 , "■", GetColor(225, 0, 225));
-	
+	DrawString(m_pos.x - 3, m_pos.y - 2, "■", GetColor(225, 0, 225));
 
 	// フラグの確認(デバック用)
-	if (RockBlock == false)
+	if (RockBlock == false)		// 固定されている
 	{
-		DrawString(100, 300, "a", GetColor(0, 225, 0));
+		DrawString(50, 300, "a 固定 \n  false", GetColor(0, 225, 0));
 	}
-	if (RockBlock == true)
+	if (RockBlock == true)		// 固定されていない
 	{
-		DrawString(100, 300, "b", GetColor(0, 225, 0));
+		DrawString(50, 300, "b 未固定 \n  true", GetColor(0, 225, 0));
 	}
+
 }
+
+//struct Minos
+//{
+//	int cells[4][4];	// ブロックの配置
+//};
+//
+//Minos minos[8] =
+//{
+//	// Oテトリミノ
+//	{
+//		0,0,0,0,
+//		0,3,3,0,
+//		0,3,3,0,
+//		0,0,0,0
+//	},
+//
+//	// Iテトリミノ
+//	{
+//		0,0,0,0,
+//		0,0,0,0,
+//		3,3,3,3,
+//		0,0,0,0
+//	},
+//
+//	// Sテトリミノ
+//	{
+//		0,0,0,0,
+//		0,3,3,0,
+//		3,3,0,0,
+//		0,0,0,0
+//	},
+//
+//	// Zテトリミノ
+//	{
+//		0,0,0,0,
+//		0,3,3,0,
+//		0,0,3,3,
+//		0,0,0,0
+//	},
+//
+//	// Jテトリミノ
+//	{
+//		0,0,3,0,
+//		0,0,3,0,
+//		0,3,3,0,
+//		0,0,0,0
+//	},
+//
+//	// Lテトリミノ
+//	{
+//		0,3,0,0,
+//		0,3,0,0,
+//		0,3,3,0,
+//		0,0,0,0
+//	},
+//
+//	// Tテトリミノ
+//	{
+//		0,0,0,0,
+//		0,3,0,0,
+//		3,3,3,0,
+//		0,0,0,0,
+//	},
+//};

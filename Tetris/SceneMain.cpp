@@ -27,15 +27,28 @@ void SceneMain::init()
 void SceneMain::update()
 {
 	Pad::update();
-	mino.update();
+
+	// フラグの座標を持ってくる
+	if (mino.RockBlock == false)
+	{
+		// 固定処理
+		int heignt, windth;
+
+		heignt = (mino.getPos().y / 20);		// 座標位置を調べる
+		windth = (mino.getPos().x / 20);		// 座標位置を調べる
+
+		Field[heignt][windth] = 1;
+
+	}
 	mino.Field(field);
+	mino.update();
+
 }
 
 void SceneMain::draw()
 {
-	// ミノの描画
-	mino.draw();
 
+	mino.draw();
 	// フィールドの描画
 	for (int y = 0; y < BOAD_HEIGHT; y++)
 	{
@@ -64,6 +77,12 @@ void SceneMain::draw()
 			
 			case 2:
 				DrawString(x + x * 19 - 1, y + y * 19 - 1, "　",GetColor(225, 225, 225));
+				break;
+
+			case 3:
+				// ミノ(一個のみ仮)
+				SetFontSize(25);		// ■のサイズを25に調整
+				DrawString(mino.getPos().x - 3, mino.getPos().y - 2, "■", GetColor(225, 0, 225));
 				break;
 
 			default:

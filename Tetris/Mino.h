@@ -14,10 +14,11 @@ public:
 	virtual void update();
 	virtual void FixedUpdate();
 	virtual void draw();
-	virtual int Field(int field[BOAD_WINDTH][BOAD_HEIGHT]);
+	virtual int  Field(int field[BOAD_WINDTH][BOAD_HEIGHT]);
 
-	bool RockBlock = false;		// 固定用フラグ
-
+	bool RockBlock = true;		// 固定用フラグ
+	
+	Vec2 getPos() const { return m_pos; }
 
 private:
 	// 表示位置
@@ -27,7 +28,4 @@ private:
 	Vec2 m_vec;
 
 	int fallframe = 0;
-
-
 };
-
