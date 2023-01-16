@@ -83,8 +83,6 @@ void Mino::update()
 		m_pos.y = 20;
 	}	
 
-	
-
 	// 380の位置まではtrueを返す(実験中のため数字直記入)
 	if (m_pos.y < 380)
 	{
@@ -130,7 +128,7 @@ void Mino::FixedUpdate()
 
 	if (Check == false)
 	{	
-		main.Field[y +1][x] = 1;	// 下にミノがあったら1つ上に表示する
+		main.Field[y+1][x] = 1;	// 下にミノがあったら1つ上に表示する
 	}
 	if (Check == true)
 	{
