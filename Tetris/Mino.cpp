@@ -27,6 +27,7 @@ void Mino::init()
 	m_vec.x = 0.0f;
 	m_vec.y = 0.0f;
 	RockBlock = true;		// フラグの初期化
+	Check = true;			// 下にミノがあるかどうかのチェックをするフラグの初期化
 }
 
 // ミノ移動処理
@@ -79,8 +80,10 @@ void Mino::update()
 	if (m_pos.y > Game::kScreenHeight - 40)
 	{
 		m_pos.y = Game::kScreenHeight - 40;
-		RockBlock = false;
-	}
+		m_pos.y = 20;
+	}	
+
+	
 
 	// 380の位置まではtrueを返す(実験中のため数字直記入)
 	if (m_pos.y < 380)
@@ -113,6 +116,7 @@ void Mino::FixedUpdate()
 
 	heignt = (m_pos.y / 20);		// 座標位置を調べる
 	windth = (m_pos.x / 20);		// 座標位置を調べる
+	int x = heignt, y = windth;
 
 	// デバック用
 	DrawFormatString(50, 100, GetColor(225, 225, 225), "%f", m_pos.y);
@@ -120,11 +124,22 @@ void Mino::FixedUpdate()
 	DrawFormatString(50, 200, GetColor(0, 225, 225),   "%d", heignt);
 	DrawFormatString(50, 250, GetColor(0, 225, 225),   "%d", windth);
 	
-	// 固定判定		(false = 固定する　　true = 何もしない)
-	if (RockBlock == false)
+	// 下にブロックがあるかどうかのチェック判定
+	// すでに固定されているミノに重ならないようにする
+	// (false = 下にミノがある true = 下にミノがない)
+
+	if (Check == false)
+	{	
+		main.Field[y +1][x] = 1;	// 下にミノがあったら1つ上に表示する
+	}
+	if (Check == true)
 	{
-		int x = heignt, y = windth;
-		
+		main.Field[y][x] = 0;		// それ以外は何もしない
+	}
+
+	// ミノの固定判定		(false = 固定する　　true = 何もしない)
+	if (RockBlock == false)
+	{	
 		if (main.Field[y][x] == 0)// フィールドに0じゃないのが入っていなかったら
 		{
 			main.Field[y][x] = 1;		// 背景(case1)を呼び出す
@@ -132,8 +147,6 @@ void Mino::FixedUpdate()
 	}
 	if (RockBlock == true)
 	{
-		int x = heignt, y = windth;
-
 		main.Field[y][x] = 0;		// それ以外は何もしない
 	}
 	
@@ -144,7 +157,7 @@ void Mino::draw()
 	// ミノ(一個のみ仮)
 	SetFontSize(25);		// ■のサイズを25に調整
 	DrawString(m_pos.x - 3, m_pos.y - 2, "■", GetColor(225, 0, 225));
-
+	
 	// フラグの確認(デバック用)
 	if (RockBlock == false)		// 固定されている
 	{

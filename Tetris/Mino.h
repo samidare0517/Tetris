@@ -17,7 +17,8 @@ public:
 	virtual int  Field(int field[BOAD_WINDTH][BOAD_HEIGHT]);
 
 	bool RockBlock = true;		// 固定用フラグ
-	
+	bool Check = true;			// 下にブロックがあるかどうかのチェックをするフラグ
+
 	Vec2 getPos() const { return m_pos; }
 
 private:
